@@ -28,6 +28,10 @@ public class CSPDirective {
         return name + " " + String.join(" ", values);
     }
     
+    List<String> getRawValues() {
+        return values;
+    }
+    
     public CSPDirective(String name) {
         this(name, new String[0]);
     }
