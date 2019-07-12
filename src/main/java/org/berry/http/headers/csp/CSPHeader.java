@@ -7,7 +7,9 @@ package org.berry.http.headers.csp;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -42,6 +44,39 @@ public class CSPHeader {
                 directives.values().stream()
                         .map(d -> d.getValue())
                         .collect(Collectors.toList()));
+    }
+
+    /**
+     * Based on the "frame-ancestors" property specified, attempt to get the 
+     * value of the equivalent legacy "X-Frame-Options" header. This method 
+     * will only return a result if the "frame-ancestors" directive is set to 
+     * one of 'none', 'self', or a single http or https domain. In all other 
+     * cases, and if the "frame-ancestors" property isn't specified, this method
+     * will return an empty value.
+     * 
+     * Note that even in the cases where this method does return a value, 
+     * equivalent functionality to the "frame-ancestors" directive cannot be
+     * guaranteed.
+     * 
+     * @return The value of the equivalent legacy "X-Frame-Options" header, if
+     * possible.
+     */
+    public Optional<String> getLegacyXFrameOptionsValue() {
+        return Optional.ofNullable(directives.get("frame-ancestors"))
+                .map(d -> d.getRawValues())
+                .filter(l -> l.size() == 1)
+                .map(l -> l.get(0))
+                .map(s -> {
+                    if (s.equals(CSP.NONE)) {
+                        return "deny";
+                    } else if (s.contains(CSP.SELF)) {
+                        return "sameorigin";
+                    } else if (s.startsWith("http://") || s.startsWith("https://")) {
+                        return "allow-from " + s;
+                    } else {
+                        return null;
+                    }
+                });
     }
 
     public static void main(String[] args) {
