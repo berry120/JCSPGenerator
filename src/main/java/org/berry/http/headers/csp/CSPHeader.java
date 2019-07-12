@@ -7,7 +7,7 @@ package org.berry.http.headers.csp;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -20,7 +20,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class CSPHeader {
 
-    private final List<CSPDirective> directives;
+    private final Map<String, CSPDirective> directives;
 
     public CSPHeader(Iterable<CSPDirective> values) {
         this(StreamSupport.stream(values.spliterator(), false));
@@ -31,12 +31,15 @@ public class CSPHeader {
     }
 
     public CSPHeader(CSPDirective... values) {
-        this.directives = Collections.unmodifiableList(Arrays.asList(values));
+        this.directives = Collections.unmodifiableMap(
+                Arrays.stream(values)
+                        .collect(Collectors.toMap(a -> a.getName(), b -> b))
+        );
     }
 
     public String getValue() {
         return String.join("; ",
-                directives.stream()
+                directives.values().stream()
                         .map(d -> d.getValue())
                         .collect(Collectors.toList()));
     }
