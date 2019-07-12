@@ -46,17 +46,17 @@ public class CSPHeader {
 
     public static void main(String[] args) {
         CSPHeader header = new CSPHeader(
-                CSPDirective.defaultSrc(CSPConstants.SELF),
-                CSPDirective.connectSrc(CSPConstants.SELF, "https://legacy.example.com"),
-                CSPDirective.fontSrc(CSPConstants.SELF, "https://fonts.example.com"),
-                CSPDirective.frameSrc(CSPConstants.SELF, "https://frame.paypal.com", "https://frame2.paypal.com", "https://analytics.provider.info"),
-                CSPDirective.imgSrc(CSPConstants.SELF, "https://images.example.com", "https://cdn.example.com"),
-                CSPDirective.mediaSrc(CSPConstants.NONE),
-                CSPDirective.objectSrc(CSPConstants.NONE),
-                CSPDirective.scriptSrc(CSPConstants.SELF, "https://script.example.org", "https://apis.example.org", "https://analytics.provider.info"),
-                CSPDirective.frameAncestors(CSPConstants.NONE),
-                CSPDirective.blockAllMixedContent(),
-                CSPDirective.upgradeInsecureRequests()
+                CSP.defaultSrc(CSP.SELF),
+                CSP.connectSrc(CSP.SELF, "https://legacy.example.com"),
+                CSP.fontSrc(CSP.SELF, "https://fonts.example.com"),
+                CSP.frameSrc(CSP.SELF, "https://frame.paypal.com", "https://frame2.paypal.com", "https://analytics.provider.info"),
+                CSP.imgSrc(CSP.SELF, "https://images.example.com", "https://cdn.example.com"),
+                CSP.mediaSrc(CSP.NONE),
+                CSP.objectSrc(CSP.NONE),
+                CSP.scriptSrc(CSP.SELF, "https://script.example.org", "https://apis.example.org", "https://analytics.provider.info"),
+                CSP.frameAncestors(CSP.NONE),
+                CSP.blockAllMixedContent(),
+                CSP.upgradeInsecureRequests()
         );
         System.out.println(header.getValue());
     }
