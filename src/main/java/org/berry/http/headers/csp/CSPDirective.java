@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 /**
  *
@@ -19,6 +20,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class CSPDirective {
     
+    @Getter
     private String name;
     private List<String> values;
     
