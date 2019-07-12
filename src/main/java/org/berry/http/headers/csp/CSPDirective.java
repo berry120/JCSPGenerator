@@ -10,11 +10,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import lombok.EqualsAndHashCode;
 
 /**
  *
  * @author Michael
  */
+@EqualsAndHashCode
 public class CSPDirective {
     
     private String name;

@@ -11,11 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import lombok.EqualsAndHashCode;
 
 /**
  *
  * @author Michael
  */
+@EqualsAndHashCode
 public class CSPHeader {
 
     private final List<CSPDirective> directives;
@@ -51,8 +53,6 @@ public class CSPHeader {
                 CSPDirective.scriptSrc(CSPConstants.SELF, "https://script.example.org", "https://apis.example.org", "https://analytics.provider.info"),
                 CSPDirective.frameAncestors(CSPConstants.NONE),
                 CSPDirective.blockAllMixedContent(),
-                CSPDirective.upgradeInsecureRequests(),
-                CSPDirective.upgradeInsecureRequests(),
                 CSPDirective.upgradeInsecureRequests()
         );
         System.out.println(header.getValue());
