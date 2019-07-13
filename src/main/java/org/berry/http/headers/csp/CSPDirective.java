@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -22,14 +23,11 @@ public class CSPDirective {
     
     @Getter
     private String name;
+    @Getter(AccessLevel.PACKAGE)
     private List<String> values;
     
     public String getValue() {
         return name + " " + String.join(" ", values);
-    }
-    
-    List<String> getRawValues() {
-        return values;
     }
     
     public CSPDirective(String name) {

@@ -62,7 +62,7 @@ public class CSPHeader {
      */
     public Optional<String> getLegacyXFrameOptionsValue() {
         return Optional.ofNullable(directives.get("frame-ancestors"))
-                .map(d -> d.getRawValues())
+                .map(d -> d.getValues())
                 .filter(l -> l.size() == 1)
                 .map(l -> l.get(0))
                 .map(s -> {
