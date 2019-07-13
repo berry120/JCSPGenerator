@@ -6,7 +6,8 @@
 package org.berry.http.headers.csp;
 
 /**
- *
+ * Contains static constants and convenience methods for forming CSP directives.
+ * 
  * @author Michael
  */
 public class CSP {
