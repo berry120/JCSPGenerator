@@ -25,8 +25,24 @@ public class CSP {
     public static final String STRICT_DYNAMIC = "'strict-dynamic'";
     
     public static String nonce(String nonce) {
-        new CSPSyntaxChecker().checkBase64(nonce);
-        return "'nonce-" + nonce + "'";
+        return rawB64Val("nonce", nonce, -1);
+    }
+    
+    public static String sha256(String val) {
+        return rawB64Val("sha256", val, 256);
+    }
+    
+    public static String sha384(String val) {
+        return rawB64Val("sha384", val, 384);
+    }
+    
+    public static String sha512(String val) {
+        return rawB64Val("sha512", val, 512);
+    }
+    
+    private static String rawB64Val(String name, String val, int lengthCheck) {
+        new CSPSyntaxChecker().checkBase64(val, lengthCheck);
+        return "'" + name + "-" + val + "'";
     }
     
     public static CSPDirective baseUri(String... values) {

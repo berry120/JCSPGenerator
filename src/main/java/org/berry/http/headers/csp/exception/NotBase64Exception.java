@@ -15,4 +15,8 @@ public class NotBase64Exception extends RuntimeException {
         super("\"" + b64 + "\" must be base64 encoded.");
     }
     
+    public NotBase64Exception(String b64, int length, int checkLength) {
+        super("\"" + b64 + "\"'s decoded length must be " + checkLength + ", it was " + length);
+    }
+    
 }

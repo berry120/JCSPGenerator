@@ -5,6 +5,7 @@
  */
 package org.berry.http.headers.csp;
 
+import java.util.Base64;
 import org.berry.http.headers.csp.exception.InvalidDirectiveNameException;
 import org.berry.http.headers.csp.exception.InvalidDirectiveValueException;
 import org.berry.http.headers.csp.exception.NotBase64Exception;
@@ -38,9 +39,13 @@ public class CSPSyntaxChecker {
         }
     }
     
-    public void checkBase64(String b64) {
+    public void checkBase64(String b64, int checkLength) {
         if(!isBase64(b64)) {
             throw new NotBase64Exception(b64);
+        }
+        byte[] decoded = Base64.getDecoder().decode(b64);
+        if(checkLength>0 && decoded.length!=checkLength) {
+            throw new NotBase64Exception(b64, decoded.length, checkLength);
         }
     }
     
