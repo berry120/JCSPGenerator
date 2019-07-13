@@ -31,7 +31,7 @@ public class CSPSyntaxChecker {
     }
     
     public void checkValue(String value) {
-        if(!value.matches("[^\\;\\,]+")) {
+        if(!value.matches("[^\\;\\,\\s]+")) {
             throw new InvalidDirectiveValueException(value);
         }
     }
