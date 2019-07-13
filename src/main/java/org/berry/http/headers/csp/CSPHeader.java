@@ -7,7 +7,6 @@ package org.berry.http.headers.csp;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -79,6 +78,10 @@ public class CSPHeader {
                 });
     }
 
+    /**
+     * Just temporarily here until we get around to adding proper tests.
+     * @param args 
+     */
     public static void main(String[] args) {
         CSPHeader header = new CSPHeader(
                 CSP.defaultSrc(CSP.SELF),
