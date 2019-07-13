@@ -7,7 +7,7 @@ package org.berry.http.headers.csp;
 
 import org.berry.http.headers.csp.exception.InvalidDirectiveNameException;
 import org.berry.http.headers.csp.exception.InvalidDirectiveValueException;
-import org.berry.http.headers.csp.exception.InvalidNonceException;
+import org.berry.http.headers.csp.exception.NotBase64Exception;
 
 /**
  *
@@ -38,9 +38,9 @@ public class CSPSyntaxChecker {
         }
     }
     
-    public void checkNonce(String nonce) {
-        if(!isBase64(nonce)) {
-            throw new InvalidNonceException(nonce);
+    public void checkBase64(String b64) {
+        if(!isBase64(b64)) {
+            throw new NotBase64Exception(b64);
         }
     }
     

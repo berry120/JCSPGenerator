@@ -9,10 +9,10 @@ package org.berry.http.headers.csp.exception;
  *
  * @author Michael
  */
-public class InvalidNonceException extends RuntimeException {
+public class NotBase64Exception extends RuntimeException {
     
-    public InvalidNonceException(String nonce) {
-        super("\"" + nonce + "\" is not a valid nonce. Must be base64 encoded.");
+    public NotBase64Exception(String b64) {
+        super("\"" + b64 + "\" must be base64 encoded.");
     }
     
 }

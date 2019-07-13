@@ -25,7 +25,7 @@ public class CSP {
     public static final String STRICT_DYNAMIC = "'strict-dynamic'";
     
     public static String nonce(String nonce) {
-        new CSPSyntaxChecker().checkNonce(nonce);
+        new CSPSyntaxChecker().checkBase64(nonce);
         return "'nonce-" + nonce + "'";
     }
     
