@@ -34,6 +34,7 @@ public class CSPHeader {
     }
 
     public CSPHeader(CSPDirective... values) {
+        new CSPSyntaxChecker().checkDuplicateDirectives(values);
         this.directives = Collections.unmodifiableMap(
                 Arrays.stream(values)
                         .collect(Collectors.toMap(a -> a.getName(), b -> b))
@@ -87,7 +88,8 @@ public class CSPHeader {
                 CSP.imgSrc(CSP.SELF, "https://images.example.com", "https://cdn.example.com"),
                 CSP.mediaSrc(CSP.NONE),
                 CSP.objectSrc(CSP.NONE),
-                CSP.scriptSrc(CSP.SELF, "https://script.example.org", "https://apis.example.org", "https://analytics.provider.info"),
+                CSP.scriptSrc(CSP.SELF, CSP.sha256(CSPUtils.hashSha256("asdasd"))),
+//                CSP.scriptSrc(CSP.SELF, "https://script.example.org", "https://apis.example.org", "https://analytics.provider.info"),
                 CSP.frameAncestors(CSP.NONE),
                 CSP.blockAllMixedContent(),
                 CSP.upgradeInsecureRequests()

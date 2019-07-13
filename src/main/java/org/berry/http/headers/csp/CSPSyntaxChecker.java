@@ -5,7 +5,10 @@
  */
 package org.berry.http.headers.csp;
 
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.stream.Collectors;
+import org.berry.http.headers.csp.exception.DuplicateDirectivesException;
 import org.berry.http.headers.csp.exception.InvalidDirectiveNameException;
 import org.berry.http.headers.csp.exception.InvalidDirectiveValueException;
 import org.berry.http.headers.csp.exception.NotBase64Exception;
@@ -36,6 +39,12 @@ public class CSPSyntaxChecker {
     public void checkName(String name) {
         if (!name.matches("[a-zA-Z0-9\\-]+")) {
             throw new InvalidDirectiveNameException(name);
+        }
+    }
+    
+    public void checkDuplicateDirectives(CSPDirective... directives) {
+        if(Arrays.stream(directives).map(d -> d.getName()).collect(Collectors.toSet()).size()!=directives.length) {
+            throw new DuplicateDirectivesException();
         }
     }
     
