@@ -24,6 +24,11 @@ public class CSP {
     public static final String REPORT_SAMPLE = "'report-sample'";
     public static final String STRICT_DYNAMIC = "'strict-dynamic'";
     
+    public static String nonce(String nonce) {
+        new CSPSyntaxChecker().checkNonce(nonce);
+        return "'nonce-" + nonce + "'";
+    }
+    
     public static CSPDirective baseUri(String... values) {
         return new CSPDirective("base-uri", values);
     }
