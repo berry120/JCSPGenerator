@@ -43,6 +43,7 @@ public class CSPDirective {
     }
     
     public CSPDirective(String name, String... values) {
+        new CSPSyntaxChecker().checkNameAndValues(name, values);
         this.name = name;
         this.valueList = Collections.unmodifiableList(Arrays.asList(values));
     }
