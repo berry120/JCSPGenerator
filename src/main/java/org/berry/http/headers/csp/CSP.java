@@ -29,15 +29,15 @@ public class CSP {
     }
     
     public static String sha256(String val) {
-        return rawB64Val("sha256", val, 256);
+        return rawB64Val("sha256", val, 256/8);
     }
     
     public static String sha384(String val) {
-        return rawB64Val("sha384", val, 384);
+        return rawB64Val("sha384", val, 384/8);
     }
     
     public static String sha512(String val) {
-        return rawB64Val("sha512", val, 512);
+        return rawB64Val("sha512", val, 512/8);
     }
     
     private static String rawB64Val(String name, String val, int lengthCheck) {
