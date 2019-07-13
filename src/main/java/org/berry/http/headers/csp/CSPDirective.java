@@ -24,10 +24,10 @@ public class CSPDirective {
     @Getter
     private String name;
     @Getter(AccessLevel.PACKAGE)
-    private List<String> values;
+    private List<String> valueList;
     
     public String getValue() {
-        return name + " " + String.join(" ", values);
+        return name + " " + String.join(" ", valueList);
     }
     
     public CSPDirective(String name) {
@@ -44,7 +44,7 @@ public class CSPDirective {
     
     public CSPDirective(String name, String... values) {
         this.name = name;
-        this.values = Collections.unmodifiableList(Arrays.asList(values));
+        this.valueList = Collections.unmodifiableList(Arrays.asList(values));
     }
     
 }

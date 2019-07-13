@@ -5,8 +5,10 @@
  */
 package org.berry.http.headers.csp;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -46,41 +48,35 @@ public class CSPHeader {
     }
 
     /**
-     * Based on the "frame-ancestors" property specified, attempt to get the 
-     * value of the equivalent legacy "X-Frame-Options" header. This method 
-     * will only return a result if the "frame-ancestors" directive is set to 
-     * one of 'none', 'self', or a single http or https domain. In all other 
-     * cases, and if the "frame-ancestors" property isn't specified, this method
-     * will return an empty value.
-     * 
-     * Note that even in the cases where this method does return a value, 
+     * Based on the "frame-ancestors" property specified, attempt to get the
+     * value of the equivalent legacy "X-Frame-Options" header. This method will
+     * only return a result if the "frame-ancestors" directive is set to one of
+     * 'none', 'self', or a single http or https domain. In all other cases, and
+     * if the "frame-ancestors" property isn't specified, this method will
+     * return an empty value.
+     *
+     * Note that even in the cases where this method does return a value,
      * equivalent functionality to the "frame-ancestors" directive cannot be
      * guaranteed.
-     * 
+     *
      * @return The value of the equivalent legacy "X-Frame-Options" header, if
      * possible.
      */
     public Optional<String> getLegacyXFrameOptionsValue() {
-        return Optional.ofNullable(directives.get("frame-ancestors"))
-                .map(d -> d.getValues())
-                .filter(l -> l.size() == 1)
-                .map(l -> l.get(0))
-                .map(s -> {
-                    if (s.equals(CSP.NONE)) {
-                        return "deny";
-                    } else if (s.contains(CSP.SELF)) {
-                        return "sameorigin";
-                    } else if (s.startsWith("http://") || s.startsWith("https://")) {
-                        return "allow-from " + s;
-                    } else {
-                        return null;
-                    }
-                });
+        return getLegacyValue(new LegacyXFrameOptionsHeader());
+    }
+
+    private Optional<String> getLegacyValue(LegacyHeader legacyHeader) {
+        return Optional.ofNullable(directives.get(legacyHeader.getEquivalentCspDirective()))
+                .flatMap(
+                        d -> new LegacyTransformer(d, legacyHeader.getTransformerMap()).transform()
+                );
     }
 
     /**
      * Just temporarily here until we get around to adding proper tests.
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
         CSPHeader header = new CSPHeader(
@@ -97,6 +93,7 @@ public class CSPHeader {
                 CSP.upgradeInsecureRequests()
         );
         System.out.println(header.getValue());
+        header.getLegacyXFrameOptionsValue().ifPresent(System.out::println);
     }
 
 }
