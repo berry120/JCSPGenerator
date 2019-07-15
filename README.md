@@ -2,9 +2,10 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/3252efe6e79b4ce7b249222634cf9aed)](https://www.codacy.com/app/berry120/JCSPGenerator?utm_source=github.com&utm_medium=referral&utm_content=berry120/JCSPGenerator&utm_campaign=Badge_Coverage)
 [![CircleCI](https://circleci.com/gh/berry120/JCSPGenerator.svg?style=svg)](https://circleci.com/gh/berry120/JCSPGenerator)
 [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Mutation tested with PIT](https://img.shields.io/badge/-Mutation%20tested%20with%20PIT-blue.svg)](http://pitest.org/)
 
 # JCSPGenerator
-JCSPGenerator is an open source Java library for dynamically generating a `Content-Security-Policy` header.
+JCSPGenerator is an open source Java library for dynamically generating a `Content-Security-Policy` header. Requires Java 8+.
 
 **Please be very careful if using this library in a production setting.**
 
