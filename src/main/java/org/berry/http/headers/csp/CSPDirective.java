@@ -38,14 +38,6 @@ public class CSPDirective {
         this(name, new String[0]);
     }
 
-    public CSPDirective(String name, Iterable<String> values) {
-        this(name, StreamSupport.stream(values.spliterator(), false));
-    }
-
-    public CSPDirective(String name, Stream<String> values) {
-        this(name, values.toArray(String[]::new));
-    }
-
     public CSPDirective(String name, String... values) {
         new CSPSyntaxChecker().checkNameAndValues(name, values);
         this.name = name;
