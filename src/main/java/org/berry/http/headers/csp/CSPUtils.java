@@ -17,11 +17,11 @@ import java.util.Base64;
  */
 public class CSPUtils {
     
-    private static final SecureRandom secureRandom = new SecureRandom();
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
     
     public static String generateNonce() {
         byte[] bytes = new byte[16];
-        secureRandom.nextBytes(bytes);
+        SECURE_RANDOM.nextBytes(bytes);
         return new String(Base64.getEncoder().encode(bytes));
     }
     
