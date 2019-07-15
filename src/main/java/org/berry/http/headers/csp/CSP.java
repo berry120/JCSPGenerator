@@ -5,12 +5,15 @@
  */
 package org.berry.http.headers.csp;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * Contains static constants and convenience methods for forming CSP directives.
  * 
  * @author Michael
  */
-public final class CSP {
+@UtilityClass
+public class CSP {
     
     public static final String NONE = "'none'";
     public static final String ALL = "'all'";
@@ -132,9 +135,4 @@ public final class CSP {
     public static CSPDirective workerSrc(String... values) {
         return new CSPDirective("worker-src", values);
     }
-    
-    private CSP() {
-        throw new AssertionError("Not to be instantiated");
-    }
-
 }

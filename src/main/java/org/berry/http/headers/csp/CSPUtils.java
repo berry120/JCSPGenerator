@@ -10,12 +10,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
+import lombok.experimental.UtilityClass;
 
 /**
  *
  * @author Michael
  */
-public final class CSPUtils {
+@UtilityClass
+public class CSPUtils {
 
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
@@ -44,10 +46,6 @@ public final class CSPUtils {
         } catch (NoSuchAlgorithmException ex) {
             throw new IllegalArgumentException("Error locating " + algorithm + " algorithm", ex);
         }
-    }
-
-    private CSPUtils() {
-        throw new AssertionError("Not for instantiation");
     }
 
 }
