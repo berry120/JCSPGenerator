@@ -74,9 +74,13 @@ public class CSPSyntaxCheckerTest {
         CSPSyntaxChecker instance = new CSPSyntaxChecker();
         instance.checkBase64("MTIz", 3);
         instance.checkBase64("MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5", 36);
-        instance.checkBase64("MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5", -1);
+        instance.checkBase64("MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5");
         assertThrows(NotBase64Exception.class, () -> {
             instance.checkBase64("MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5", 1);
+            instance.checkBase64("$$", -1);
+        });
+        assertThrows(NotBase64Exception.class, () -> {
+            instance.checkBase64("notbase64atall!!!!");
             instance.checkBase64("$$", -1);
         });
     }
