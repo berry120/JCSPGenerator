@@ -4,7 +4,7 @@
 [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 # JCSPGenerator
-JCSPGenerator is a Java library for dynamically generating a `Content-Security-Policy` header.
+JCSPGenerator is an open source Java library for dynamically generating a `Content-Security-Policy` header.
 
 **Please be very careful if using this library in a production setting.**
 
