@@ -32,6 +32,26 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.4.9</version>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>0.9</version>
+                    </dependency>
+                </dependencies>
+
+                <configuration>
+                    <timestampedReports>false</timestampedReports>
+                    <outputFormats>HTML,XML</outputFormats>
+                    <threads>4</threads>
+                    <exportLineCoverage>true</exportLineCoverage>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
