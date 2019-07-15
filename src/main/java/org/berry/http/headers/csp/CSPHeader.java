@@ -10,8 +10,6 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -22,14 +20,6 @@ import lombok.EqualsAndHashCode;
 public class CSPHeader {
 
     private final Map<String, CSPDirective> directives;
-
-    public CSPHeader(Iterable<CSPDirective> values) {
-        this(StreamSupport.stream(values.spliterator(), false));
-    }
-
-    public CSPHeader(Stream<CSPDirective> values) {
-        this(values.toArray(CSPDirective[]::new));
-    }
 
     public CSPHeader(CSPDirective... values) {
         new CSPSyntaxChecker().checkDuplicateDirectives(values);
@@ -70,30 +60,6 @@ public class CSPHeader {
                 .flatMap(
                         d -> new LegacyTransformer(d, legacyHeader.getTransformerMap()).transform()
                 );
-    }
-
-    /**
-     * Just temporarily here until we get around to adding proper tests.
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        CSPHeader header = new CSPHeader(
-                CSP.defaultSrc(CSP.SELF),
-                CSP.connectSrc(CSP.SELF, "https://legacy.example.com"),
-                CSP.fontSrc(CSP.SELF, "https://fonts.example.com"),
-                CSP.frameSrc(CSP.SELF, "https://frame.paypal.com", "https://frame2.paypal.com", "https://analytics.provider.info"),
-                CSP.imgSrc(CSP.SELF, "https://images.example.com", "https://cdn.example.com"),
-                CSP.mediaSrc(CSP.NONE),
-                CSP.objectSrc(CSP.NONE),
-                CSP.scriptSrc(CSP.SELF, CSP.sha256(CSPUtils.hashSha256("asdasd"))),
-//                CSP.scriptSrc(CSP.SELF, "https://script.example.org", "https://apis.example.org", "https://analytics.provider.info"),
-                CSP.frameAncestors(CSP.NONE),
-                CSP.blockAllMixedContent(),
-                CSP.upgradeInsecureRequests()
-        );
-        System.out.println(header.getValue());
-        header.getLegacyXFrameOptionsValue().ifPresent(System.out::println);
     }
 
 }
