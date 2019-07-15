@@ -33,7 +33,7 @@ public class CSPHeader {
         return String.join("; ",
                 directives.values().stream()
                         .map(d -> d.getValue())
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList())) + ";";
     }
 
     /**
