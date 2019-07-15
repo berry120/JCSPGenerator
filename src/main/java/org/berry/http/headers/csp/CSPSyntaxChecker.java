@@ -48,6 +48,10 @@ public class CSPSyntaxChecker {
         }
     }
     
+    public void checkBase64(String b64) {
+        checkBase64(b64, -1);
+    }
+    
     public void checkBase64(String b64, int checkLength) {
         if(!isBase64(b64)) {
             throw new NotBase64Exception(b64);
