@@ -12,10 +12,6 @@ package org.berry.http.headers.csp;
  */
 public class CSP {
     
-    public CSP() {
-        throw new AssertionError("Not to be instantiated");
-    }
-    
     public static final String NONE = "'none'";
     public static final String ALL = "'all'";
     public static final String SELF = "'self'";
@@ -135,6 +131,10 @@ public class CSP {
 
     public static CSPDirective workerSrc(String... values) {
         return new CSPDirective("worker-src", values);
+    }
+    
+    private CSP() {
+        throw new AssertionError("Not to be instantiated");
     }
 
 }
