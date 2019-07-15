@@ -25,6 +25,9 @@ public class CSPSyntaxCheckerTest {
         assertThrows(InvalidDirectiveValueException.class, () -> {
             instance.checkNameAndValues("testnameok", new String[]{"valueok", "value notok (contains space)"});
         });
+        assertThrows(InvalidDirectiveNameException.class, () -> {
+            instance.checkNameAndValues("testname;notok", new String[]{"valueok", "valueok2"});
+        });
     }
 
     @Test
@@ -75,13 +78,19 @@ public class CSPSyntaxCheckerTest {
         instance.checkBase64("MTIz", 3);
         instance.checkBase64("MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5", 36);
         instance.checkBase64("MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5");
+        instance.checkBase64("", 0);
+        instance.checkBase64("YQ==", 1);
         assertThrows(NotBase64Exception.class, () -> {
             instance.checkBase64("MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5MTIzNDU2Nzg5", 1);
+        });
+        assertThrows(NotBase64Exception.class, () -> {
             instance.checkBase64("$$", -1);
         });
         assertThrows(NotBase64Exception.class, () -> {
             instance.checkBase64("notbase64atall!!!!");
-            instance.checkBase64("$$", -1);
+        });
+        assertThrows(NotBase64Exception.class, () -> {
+            instance.checkBase64("MTIz", 0);
         });
     }
 
