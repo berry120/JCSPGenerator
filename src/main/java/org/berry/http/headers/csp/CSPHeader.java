@@ -30,10 +30,14 @@ public class CSPHeader {
     }
 
     public String getValue() {
-        return String.join("; ",
-                directives.values().stream()
-                        .map(d -> d.getValue())
-                        .collect(Collectors.toList())) + ";";
+        if (directives.isEmpty()) {
+            return "";
+        } else {
+            return String.join("; ",
+                    directives.values().stream()
+                            .map(d -> d.getValue())
+                            .collect(Collectors.toList())) + ";";
+        }
     }
 
     /**
