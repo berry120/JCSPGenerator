@@ -15,7 +15,7 @@ import java.util.Base64;
  *
  * @author Michael
  */
-public class CSPUtils {
+public final class CSPUtils {
 
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
