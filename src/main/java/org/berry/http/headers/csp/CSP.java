@@ -10,7 +10,7 @@ package org.berry.http.headers.csp;
  * 
  * @author Michael
  */
-public class CSP {
+public final class CSP {
     
     public static final String NONE = "'none'";
     public static final String ALL = "'all'";
