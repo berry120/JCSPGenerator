@@ -5,8 +5,6 @@
  */
 package org.berry.http.headers.csp;
 
-import java.util.Base64;
-import org.berry.http.headers.csp.exception.DuplicateDirectivesException;
 import org.berry.http.headers.csp.exception.NotBase64Exception;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
