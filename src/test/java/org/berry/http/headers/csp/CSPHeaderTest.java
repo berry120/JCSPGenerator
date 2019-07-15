@@ -20,7 +20,7 @@ public class CSPHeaderTest {
     public void testConstructor() {
         System.out.println("constructor");
         assertThrows(DuplicateDirectivesException.class, () -> {
-            CSPHeader header = new CSPHeader(
+            new CSPHeader(
                     CSP.defaultSrc(CSP.SELF),
                     CSP.defaultSrc(CSP.SELF)
             );
