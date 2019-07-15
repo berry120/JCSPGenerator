@@ -43,7 +43,7 @@ public class CSPUtils {
                 Base64.getEncoder().encode(MessageDigest.getInstance(algorithm).digest(toHash.getBytes(StandardCharsets.UTF_8))));
         }
         catch(NoSuchAlgorithmException ex) {
-            throw new RuntimeException("Error locating " + algorithm + " algorithm");
+            throw new AssertionError("Error locating " + algorithm + " algorithm", ex);
         }
     }
     
