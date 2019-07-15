@@ -46,4 +46,8 @@ public class CSPUtils {
         }
     }
 
+    private CSPUtils() {
+        throw new AssertionError("Not for instantiation");
+    }
+
 }
