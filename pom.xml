@@ -15,7 +15,7 @@
             <id>codecoverage</id>
             <activation>
                 <property>
-                    <name>env.CI</name>
+                    <name>env.CIRCLECI</name>
                 </property>
             </activation>
             <build>
