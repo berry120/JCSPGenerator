@@ -57,7 +57,7 @@ public class CSPSyntaxChecker {
             throw new NotBase64Exception(b64);
         }
         byte[] decoded = Base64.getDecoder().decode(b64);
-        if(checkLength>0 && decoded.length!=checkLength) {
+        if(checkLength>=0 && decoded.length!=checkLength) {
             throw new NotBase64Exception(b64, decoded.length, checkLength);
         }
     }
