@@ -39,6 +39,11 @@ public class CSPHeader {
 
     private final Map<String, CSPDirective> directives;
 
+    /**
+     * Create a CSP Header from one or more CSPDirectives. An empty CSP header
+     * is also supported. Duplicate directive names are not allowed.
+     * @param values CSPDirectives in this CSP Header.
+     */
     public CSPHeader(CSPDirective... values) {
         new CSPSyntaxChecker().checkDuplicateDirectives(values);
         this.directives = Collections.unmodifiableMap(
@@ -47,6 +52,12 @@ public class CSPHeader {
         );
     }
 
+    /**
+     * Get the full value of this header. The value can either be used for a 
+     * "Content-Security-Policy" header or "Content-Security-Policy-Report-Only"
+     * header.
+     * @return the header value.
+     */
     public String getValue() {
         if (directives.isEmpty()) {
             return "";
@@ -77,6 +88,12 @@ public class CSPHeader {
         return getLegacyValue(new LegacyXFrameOptionsHeader());
     }
 
+    /**
+     * Generic support for returning a legacy header.
+     * @param legacyHeader the legacy header to generate from this CSP header.
+     * @return the optional value of the legacy header, if it can be meaningfully
+     * generated.
+     */
     private Optional<String> getLegacyValue(LegacyHeader legacyHeader) {
         return Optional.ofNullable(directives.get(legacyHeader.getEquivalentCspDirective()))
                 .flatMap(

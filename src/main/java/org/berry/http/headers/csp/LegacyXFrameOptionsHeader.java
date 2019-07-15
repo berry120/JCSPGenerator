@@ -29,7 +29,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- *
+ * The legacy X-Frame-Options header, that in some cases can be determined from
+ * the "frame-ancestors" CSP directive.
  * @author Michael
  */
 public class LegacyXFrameOptionsHeader extends LegacyHeader {

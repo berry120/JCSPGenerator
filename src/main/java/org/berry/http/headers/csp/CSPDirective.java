@@ -31,7 +31,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- *
+ * An individual CSP directive. Multiple directives make up the full CSP header.
+ * The directive usually consists of a name and then one or more parameters.
+ * Some directives however, such as "upgrade-insecure-requests", take a name
+ * only. Note that this class will perform no checking as to whether a name, or
+ * a particular value, is valid in the CSP specification.
  * @author Michael
  */
 @EqualsAndHashCode
@@ -42,22 +46,38 @@ public class CSPDirective {
     @Getter(AccessLevel.PACKAGE)
     private List<String> valueList;
 
+    /**
+     * Create a new CSP directive, just from a name (that doesn't contain a 
+     * value.)
+     * @param name the name of the CSP directive.
+     */
+    public CSPDirective(String name) {
+        this(name, new String[0]);
+    }
+
+    /**
+     * Create a new CSP directive from a name and a list of values.
+     * @param name the name of the CSP directive.
+     * @param values the list of values.
+     */
+    public CSPDirective(String name, String... values) {
+        new CSPSyntaxChecker().checkNameAndValues(name, values);
+        this.name = name;
+        this.valueList = Collections.unmodifiableList(Arrays.asList(values));
+    }
+    
+    /**
+     * Get the value of this specific directive to be included in the whole
+     * CSP header.
+     * @return the value of this directive that will form a part of the entire
+     * CSP header.
+     */
     public String getValue() {
         if (valueList.isEmpty()) {
             return name;
         } else {
             return name + " " + String.join(" ", valueList);
         }
-    }
-
-    public CSPDirective(String name) {
-        this(name, new String[0]);
-    }
-
-    public CSPDirective(String name, String... values) {
-        new CSPSyntaxChecker().checkNameAndValues(name, values);
-        this.name = name;
-        this.valueList = Collections.unmodifiableList(Arrays.asList(values));
     }
 
 }
