@@ -20,32 +20,36 @@ import lombok.Getter;
  */
 @EqualsAndHashCode
 public class CSPDirective {
-    
+
     @Getter
     private String name;
     @Getter(AccessLevel.PACKAGE)
     private List<String> valueList;
-    
+
     public String getValue() {
-        return name + " " + String.join(" ", valueList);
+        if (valueList.isEmpty()) {
+            return name;
+        } else {
+            return name + " " + String.join(" ", valueList);
+        }
     }
-    
+
     public CSPDirective(String name) {
         this(name, new String[0]);
     }
-    
+
     public CSPDirective(String name, Iterable<String> values) {
         this(name, StreamSupport.stream(values.spliterator(), false));
     }
-    
+
     public CSPDirective(String name, Stream<String> values) {
         this(name, values.toArray(String[]::new));
     }
-    
+
     public CSPDirective(String name, String... values) {
         new CSPSyntaxChecker().checkNameAndValues(name, values);
         this.name = name;
         this.valueList = Collections.unmodifiableList(Arrays.asList(values));
     }
-    
+
 }
