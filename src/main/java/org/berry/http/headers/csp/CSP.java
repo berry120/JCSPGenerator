@@ -58,7 +58,7 @@ public class CSP {
     }
     
     private static String rawB64Val(String name, String val, int lengthCheck) {
-        new CSPSyntaxChecker().checkBase64(val, lengthCheck);
+        CSPSyntaxChecker.checkBase64(val, lengthCheck);
         return "'" + name + "-" + val + "'";
     }
     

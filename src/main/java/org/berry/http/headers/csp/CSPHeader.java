@@ -45,7 +45,7 @@ public class CSPHeader {
      * @param values CSPDirectives in this CSP Header.
      */
     public CSPHeader(CSPDirective... values) {
-        new CSPSyntaxChecker().checkDuplicateDirectives(values);
+        CSPSyntaxChecker.checkDuplicateDirectives(values);
         this.directives = Collections.unmodifiableMap(
                 Arrays.stream(values)
                         .collect(Collectors.toMap(a -> a.getName(), b -> b))
