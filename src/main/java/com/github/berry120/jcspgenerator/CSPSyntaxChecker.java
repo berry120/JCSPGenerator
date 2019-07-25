@@ -21,16 +21,16 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package org.berry.http.headers.csp;
+package com.github.berry120.jcspgenerator;
 
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.stream.Collectors;
 import lombok.experimental.UtilityClass;
-import org.berry.http.headers.csp.exception.DuplicateDirectivesException;
-import org.berry.http.headers.csp.exception.InvalidDirectiveNameException;
-import org.berry.http.headers.csp.exception.InvalidDirectiveValueException;
-import org.berry.http.headers.csp.exception.NotBase64Exception;
+import com.github.berry120.jcspgenerator.exception.DuplicateDirectivesException;
+import com.github.berry120.jcspgenerator.exception.InvalidDirectiveNameException;
+import com.github.berry120.jcspgenerator.exception.InvalidDirectiveValueException;
+import com.github.berry120.jcspgenerator.exception.NotBase64Exception;
 
 /**
  * Convenience methods for checking the syntax of CSP directives.

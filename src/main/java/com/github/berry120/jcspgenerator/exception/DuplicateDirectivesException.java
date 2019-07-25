@@ -21,20 +21,16 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package org.berry.http.headers.csp.exception;
+package com.github.berry120.jcspgenerator.exception;
 
 /**
  *
  * @author Michael
  */
-public class NotBase64Exception extends RuntimeException {
+public class DuplicateDirectivesException extends RuntimeException {
     
-    public NotBase64Exception(String b64) {
-        super("\"" + b64 + "\" must be base64 encoded.");
-    }
-    
-    public NotBase64Exception(String b64, int length, int checkLength) {
-        super("\"" + b64 + "\"'s decoded length must be " + checkLength + ", it was " + length);
+    public DuplicateDirectivesException() {
+        super("Duplicate directive names are not allowed");
     }
     
 }

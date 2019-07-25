@@ -21,16 +21,16 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package org.berry.http.headers.csp.exception;
+package com.github.berry120.jcspgenerator.exception;
 
 /**
  *
  * @author Michael
  */
-public class InvalidDirectiveValueException extends RuntimeException {
+public class InvalidDirectiveNameException extends RuntimeException {
     
-    public InvalidDirectiveValueException(String value) {
-        super("\"" + value + "\" is an invalid directive value");
+    public InvalidDirectiveNameException(String name) {
+        super("\"" + name + "\" is an invalid directive name");
     }
     
 }

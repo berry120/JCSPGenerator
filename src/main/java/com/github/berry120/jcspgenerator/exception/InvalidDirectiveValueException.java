@@ -21,26 +21,16 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package org.berry.http.headers.csp;
-
-import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import lombok.Data;
-import lombok.NonNull;
+package com.github.berry120.jcspgenerator.exception;
 
 /**
  *
  * @author Michael
  */
-@Data
-public class LegacyHeader {
-
-    @NonNull
-    private final String headerName;
-    @NonNull
-    private final String equivalentCspDirective;
-    @NonNull
-    private final Map<Predicate<String>, Function<String, String>> transformerMap;
+public class InvalidDirectiveValueException extends RuntimeException {
+    
+    public InvalidDirectiveValueException(String value) {
+        super("\"" + value + "\" is an invalid directive value");
+    }
     
 }

@@ -5,8 +5,10 @@
  */
 package org.berry.http.headers.csp;
 
+import com.github.berry120.jcspgenerator.CSP;
+import com.github.berry120.jcspgenerator.CSPHeader;
 import java.util.Optional;
-import org.berry.http.headers.csp.exception.DuplicateDirectivesException;
+import com.github.berry120.jcspgenerator.exception.DuplicateDirectivesException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

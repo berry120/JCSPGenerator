@@ -5,7 +5,9 @@
  */
 package org.berry.http.headers.csp;
 
-import org.berry.http.headers.csp.exception.NotBase64Exception;
+import com.github.berry120.jcspgenerator.CSP;
+import com.github.berry120.jcspgenerator.CSPDirective;
+import com.github.berry120.jcspgenerator.exception.NotBase64Exception;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

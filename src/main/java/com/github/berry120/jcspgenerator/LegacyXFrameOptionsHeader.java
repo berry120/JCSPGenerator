@@ -21,16 +21,30 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package org.berry.http.headers.csp.exception;
+package com.github.berry120.jcspgenerator;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
- *
+ * The legacy X-Frame-Options header, that in some cases can be determined from
+ * the "frame-ancestors" CSP directive.
  * @author Michael
  */
-public class DuplicateDirectivesException extends RuntimeException {
+public class LegacyXFrameOptionsHeader extends LegacyHeader {
     
-    public DuplicateDirectivesException() {
-        super("Duplicate directive names are not allowed");
+    public LegacyXFrameOptionsHeader() {
+        super("X-Frame-Options", "frame-ancestors", getMap());
+    }
+    
+    private static Map<Predicate<String>, Function<String, String>> getMap() {
+        Map<Predicate<String>, Function<String, String>> ret = new LinkedHashMap<>();
+        ret.put(s -> s.equals(CSP.NONE), s -> "deny");
+        ret.put(s -> s.equals(CSP.SELF), s -> "sameorigin");
+        ret.put(s -> s.startsWith("http://") || s.startsWith("https://"), s -> "allow-from " + s);
+        return ret;
     }
     
 }

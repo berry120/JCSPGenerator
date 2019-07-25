@@ -21,7 +21,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package org.berry.http.headers.csp;
+package com.github.berry120.jcspgenerator;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

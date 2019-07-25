@@ -5,6 +5,7 @@
  */
 package org.berry.http.headers.csp;
 
+import com.github.berry120.jcspgenerator.CSPUtils;
 import java.util.Base64;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

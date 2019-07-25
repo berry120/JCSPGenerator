@@ -5,10 +5,12 @@
  */
 package org.berry.http.headers.csp;
 
-import org.berry.http.headers.csp.exception.DuplicateDirectivesException;
-import org.berry.http.headers.csp.exception.InvalidDirectiveNameException;
-import org.berry.http.headers.csp.exception.InvalidDirectiveValueException;
-import org.berry.http.headers.csp.exception.NotBase64Exception;
+import com.github.berry120.jcspgenerator.CSPSyntaxChecker;
+import com.github.berry120.jcspgenerator.CSPDirective;
+import com.github.berry120.jcspgenerator.exception.DuplicateDirectivesException;
+import com.github.berry120.jcspgenerator.exception.InvalidDirectiveNameException;
+import com.github.berry120.jcspgenerator.exception.InvalidDirectiveValueException;
+import com.github.berry120.jcspgenerator.exception.NotBase64Exception;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
