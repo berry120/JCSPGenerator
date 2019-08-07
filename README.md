@@ -52,7 +52,7 @@ Integrates with Spring easily:
           .contentSecurityPolicy(header.getValue());
     }
   
-##Maven
+## Maven
 
     <dependency>
       <groupId>com.github.berry120.JCSPGenerator</groupId>
@@ -60,7 +60,7 @@ Integrates with Spring easily:
       <version>0.1</version>
     </dependency>
 
-##Gradle
+## Gradle
 
     compile 'com.github.berry120.JCSPGenerator:JCSPGenerator:0.1'
 
