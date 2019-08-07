@@ -52,7 +52,17 @@ Integrates with Spring easily:
           .contentSecurityPolicy(header.getValue());
     }
   
-**Maven and Gradle examples coming soon.**
+##Maven
+
+    <dependency>
+      <groupId>com.github.berry120.JCSPGenerator</groupId>
+      <artifactId>JCSPGenerator</artifactId>
+      <version>0.1</version>
+    </dependency>
+
+##Gradle
+
+    compile 'com.github.berry120.JCSPGenerator:JCSPGenerator:0.1'
 
 Any feature requests, issues or suggested improvements then please file an issue and/or PR.
 
