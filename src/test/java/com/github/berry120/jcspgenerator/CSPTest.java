@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.berry.http.headers.csp;
+package com.github.berry120.jcspgenerator;
 
 import com.github.berry120.jcspgenerator.CSP;
 import com.github.berry120.jcspgenerator.CSPDirective;
